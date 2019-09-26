@@ -10,7 +10,11 @@ $userid=$_SESSION['userid'];
 $mentor=$_POST['mentor'];
 $cc=$_POST['cc'];
 
-$sql = "UPDATE student SET mentor='$mentor', cc='$cc' WHERE userid='$userid'";
+$ccc=$_POST['ccc'];
+$mentorco=$_POST['mentorco'];
+$hod=$_POST['hod'];
+
+$sql = "UPDATE student SET mentor='$mentor', cc='$cc', ccc='$ccc',mentorco='$mentorco',hod='$hod' WHERE userid='$userid'";
 
 if(mysqli_query($conn,$sql))
 {

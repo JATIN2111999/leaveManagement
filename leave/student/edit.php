@@ -22,6 +22,15 @@ $showtables1= mysqli_query($conn, $sql1);
 // Fetch All Faculty from Department (CC)
 $sql2 = "SELECT * FROM faculty WHERE dep='$row[dep]' AND position='cc'";
 $showtables2= mysqli_query($conn, $sql2);
+// Fetch All Faculty from Department (CCC)
+$sql3 = "SELECT * FROM faculty WHERE dep='$row[dep]' AND position='ccc'";
+$showtables3= mysqli_query($conn, $sql3);
+// Fetch All Faculty from Department (MentoCo)
+$sql4 = "SELECT * FROM faculty WHERE dep='$row[dep]' AND position='mentorco'";
+$showtables4= mysqli_query($conn, $sql4);
+// Fetch All Faculty from Department (hod)
+$sql5 = "SELECT * FROM faculty WHERE dep='$row[dep]' AND position='hod'";
+$showtables5= mysqli_query($conn, $sql5);
 
 ?>
 <!DOCTYPE html>
@@ -63,6 +72,47 @@ $showtables2= mysqli_query($conn, $sql2);
                          
                           echo "<option value='".$table2['userid']."'>";
                           echo "$table2[name]";
+                          echo "</option>";
+                        }
+                        ?>
+    </select>
+    <br><label ><b>Select CCC</b></label>
+  <select id="ccc" name="ccc">
+   
+                        <?php
+                        while($table3 = mysqli_fetch_array($showtables3))
+                        { 
+                         
+                          echo "<option value='".$table3['userid']."'>";
+                          echo "$table3[name]";
+                          echo "</option>";
+                        }
+                        ?>
+    </select>
+    <br>
+    <label ><b>Select Mentor Co</b></label>
+  <select id="mentorco" name="mentorco">
+   
+                        <?php
+                        while($table4 = mysqli_fetch_array($showtables4))
+                        { 
+                         
+                          echo "<option value='".$table4['userid']."'>";
+                          echo "$table4[name]";
+                          echo "</option>";
+                        }
+                        ?>
+    </select>
+    <br>
+    <label ><b>Select HOD</b></label>
+  <select id="hod" name="hod">
+   
+                        <?php
+                        while($table5 = mysqli_fetch_array($showtables5))
+                        { 
+                         
+                          echo "<option value='".$table5['userid']."'>";
+                          echo "$table5[name]";
                           echo "</option>";
                         }
                         ?>

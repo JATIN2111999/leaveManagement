@@ -15,10 +15,13 @@ $result1 = mysqli_query($conn,$sql1) or die("Error: " . mysqli_error($conn));
 $row1 = $result1->fetch_array();
 
 $cc=$row1['cc'];
+$ccc=$row1['ccc'];
+$mentorco=$row1['mentorco'];
+$hod=$row1['hod'];
 $mentor=$row1['mentor'];
 $dep=$row1['dep'];
 
-$sql = "INSERT INTO appl(rollno, reason, otherr, days, cc, mentor, dep) VALUES( '$userid', '$reason','$otherr', '$days', '$cc','$mentor', '$dep')";
+$sql = "INSERT INTO appl(rollno, reason, otherr, days, cc, mentor, ccc, mentorco, hod, dep) VALUES( '$userid', '$reason','$otherr', '$days', '$cc','$mentor', '$ccc', '$mentorco', '$hod', '$dep')";
 
 
 if(mysqli_query($conn,$sql))
