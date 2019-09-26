@@ -8,11 +8,12 @@ db=pymysql.connect(host='localhost',
                              cursorclass=pymysql.cursors.DictCursor)
 
 cursor=db.cursor()
-# cursor.execute("INSERT INTO todo(data) VALUES ('cloth')")
+jatin="kirti"
+cursor.execute(f"INSERT INTO todo(data) VALUES ('{jatin}')")
 
-# db.commit()
-
-cursor.execute("SELECT * FROM `todo` WHERE 1")
+db.commit()
+id=1
+cursor.execute(f"SELECT * FROM `todo` WHERE {id}=1")
 
 results=cursor.fetchall()
 print(results)
@@ -22,3 +23,14 @@ for row in results:
     print(id, data)
 
 db.close()
+
+
+# def jatin(hello,hi,yo=None):
+#     hello=hello
+#     hi=hi
+#     yo=hello+hi
+#     print(yo)
+# data={"hello":1,"hi":2}
+# jatin(**data)
+
+
