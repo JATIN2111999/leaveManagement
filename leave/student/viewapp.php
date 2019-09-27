@@ -11,9 +11,7 @@ if(!$_SESSION['userid'])
 $userid=$_SESSION['userid'];
 $sql = "SELECT * FROM appl WHERE rollno='$userid' ";
 $showtables= mysqli_query($conn, $sql);
-// $result = mysqli_query($conn,"select count(1) FROM abhi") or die("Error: " . mysqli_error($conn));
-// $row1 = mysqli_fetch_array($result);
-// $total1 = $row1[0];
+
 function status($n){
 
   if ($n=="1") {
