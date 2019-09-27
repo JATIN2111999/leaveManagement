@@ -15,15 +15,15 @@ $showtables= mysqli_query($conn, $sql);
 // $row1 = mysqli_fetch_array($result);
 // $total1 = $row1[0];
 function status($n){
-  if ($n=="" || $n == "0") {
-    $status="Pending";
 
-  }
   if ($n=="1") {
     $status="Rejected";
   }
   if ($n=="2") {
     $status="Approved";
+  }
+  else {
+    $status="Pending";
   }
   return $status;
 }
