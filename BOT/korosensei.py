@@ -75,24 +75,33 @@ def cleardata():
     for key,_ in dataupdate.items():
         dataupdate[key]==""
 
+
+def return_file_link(linkID):
+    url=f"https://api.telegram.org/bot{TOKEN}/getFile?file_id={linkID}"
+    content=get_url(url)
+    js=json.load(content)
+    print(js)
+    return None
+
+
 def handle_updates(updates):
     for update in updates['result']:
         try:
             text=update['message']['text']
             chat = update["message"]["chat"]["id"]
             
-            if text =="/done":
+            if text =="/start":
+                cleardata()              
+                send_message("HI i am korosensei enter details in below format one by one",chat)
+                send_message("rollno:example",chat)
+                send_message("reason:commite work",chat)
+            elif text =="/done":  
                 if checkdict(dataupdate):
                     db.test_insert(**dataupdate)
+                    cleardata()
                 else:
-                    for key in dataupdate.keys():
-                        dataupdate[key]=None
-                send_message("its done bro ",chat)
-            
-
-            elif text =="/start":  
-                cleardata()              
-                send_message("HI i am korosensei enter details in below format one by one \nrollno:example \nreason:comite work",chat)
+                    cleardata()                
+                send_message("its done bro ",chat) 
                 
             elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
                 dataupdate["rollno"]=split_vtext(text)
@@ -107,9 +116,14 @@ def handle_updates(updates):
                 messageformat+="\n/done click done :)"
                 send_message(messageformat,chat)
 
+            # elif update['message']['photo']:
+            #     print("jatin")
+            #     return_file_link(update['message']['photo'][1]['file_id'])
+
             else:
-                cleardata()
-                send_message("some thing went wrong",chat)
+                send_message("hey what's up click on => /start",chat)
+
+            
         except KeyError:
             pass
                 

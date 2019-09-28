@@ -88,3 +88,63 @@
         }
     }]
 }
+
+
+
+
+
+
+
+
+
+
+{
+    "ok": true,
+    "result": [{
+        "update_id": 702540079,
+        "message": {
+            "message_id": 606,
+            "from": {
+                "id": 639245781,
+                "is_bot": false,
+                "first_name": "Jatin",
+                "last_name": "Habibkar",
+                "username": "Jatinhabibkar",
+                "language_code": "en"
+            },
+            "chat": {
+                "id": 639245781,
+                "first_name": "Jatin",
+                "last_name": "Habibkar",
+                "username": "Jatinhabibkar",
+                "type": "private"
+            },
+            "date": 1569663563,
+            "forward_from": {
+                "id": 639245781,
+                "is_bot": false,
+                "first_name": "Jatin",
+                "last_name": "Habibkar",
+                "username": "Jatinhabibkar",
+                "language_code": "en"
+            },
+            "forward_date": 1569663531,
+            "photo": [{
+                "file_id": "AgADBQADOqkxGwVleFTKrbK6CBR0qLh_-TIABAEAAwIAA20AAydUBAABFgQ",
+                "file_size": 17035,
+                "width": 180,
+                "height": 320
+            }, {
+                "file_id": "AgADBQADOqkxGwVleFTKrbK6CBR0qLh_-TIABAEAAwIAA3gAAyhUBAABFgQ",
+                "file_size": 69753,
+                "width": 450,
+                "height": 800
+            }, {
+                "file_id": "AgADBQADOqkxGwVleFTKrbK6CBR0qLh_-TIABAEAAwIAA3kAAyVUBAABFgQ",
+                "file_size": 109494,
+                "width": 720,
+                "height": 1280
+            }]
+        }
+    }]
+}
