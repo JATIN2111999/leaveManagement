@@ -31,6 +31,8 @@ $result2 = mysqli_query($conn,$sql2) or die("Error: " . mysqli_error($conn));
 $row2 = $result2->fetch_array();
 
 ?>
+
+<!-- bootstrap dalo -->
 <!DOCTYPE html>
 <html>
 <head>

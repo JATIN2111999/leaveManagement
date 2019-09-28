@@ -32,11 +32,11 @@ if(isset($_POST['login']))
     }
 }
 ?>
-
+<!-- style  dal -->
   <!DOCTYPE html>
   <html>
   <head>
-  	<title>Faculty Login</title>
+  	<title >Faculty Login</title>
   </head>
   <body>
    <form action="index.php" method="post" class="container">
