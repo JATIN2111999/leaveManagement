@@ -9,7 +9,7 @@ import json
 
 URL="https://api.telegram.org/bot{}/".format(TOKEN)
 
-dataupdate={"rollno":None,"reason":None,"days":None}
+dataupdate={"rollno":"","reason":""}
 
 db=DBHelper()
 
@@ -52,6 +52,29 @@ def checkdict(dict_value):
     return True
 
 
+#get : rollno reson keys and values 
+
+def split_ktext(text):
+    ktext=text.split(":")[0].lower()
+    return ktext
+
+def split_vtext(text):
+    vtext=text.split(":")[1].lower()
+    return vtext 
+###########################################
+
+def messageformatting(valuesdata):
+    messagehai=""
+    for key,val in valuesdata.items():
+        
+        messagehai+=f"{key}:{val}\n"
+    return messagehai
+
+#clear data in dict
+def cleardata():
+    for key,_ in dataupdate.items():
+        dataupdate[key]==""
+
 def handle_updates(updates):
     for update in updates['result']:
         try:
@@ -60,29 +83,39 @@ def handle_updates(updates):
             
             if text =="/done":
                 if checkdict(dataupdate):
-                    db.add_leave(**dataupdate)
+                    db.test_insert(**dataupdate)
                 else:
                     for key in dataupdate.keys():
                         dataupdate[key]=None
                 send_message("its done bro ",chat)
-            elif text =="/start":
-                send_message("HI i am korosensei enter your rollno:example and day:dd/mm/yy and reason:",chat)
+            
+
+            elif text =="/start":  
+                cleardata()              
+                send_message("HI i am korosensei enter details in below format one by one \nrollno:example \nreason:comite work",chat)
                 
-            elif text[:7]=="rollno:" and text[7:]!=None:
-                dataupdate["rollno"]=text[7:]
-                send_message("enter days",chat)
+            elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
+                dataupdate["rollno"]=split_vtext(text)
+                messageformat="entered data provided\n"
+                messageformat+=messageformatting(dataupdate)
+                send_message(messageformat,chat)
 
-            elif text[:5]=="days:" and text[5:]!=None:
-                dataupdate["days"]=int(text[5:])
-                send_message("enter reason",chat)
+            elif split_ktext(text)=="reason" and split_vtext(text)!=None:
+                dataupdate["reason"]=split_vtext(text)
+                messageformat="entered data provided\n"
+                messageformat+=messageformatting(dataupdate)
+                messageformat+="\n/done click done :)"
+                send_message(messageformat,chat)
 
-            elif text[:7]=="reason:" and text[7:]!=None:
-                dataupdate["reason"]=text[7:]
-                send_message("/done click done :)",chat)
             else:
+                cleardata()
                 send_message("some thing went wrong",chat)
         except KeyError:
             pass
+                
+
+
+
 
 
 def main():

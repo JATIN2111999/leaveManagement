@@ -13,7 +13,7 @@ mentorcost=0
 status=None
 hodst=0
 class DBHelper:
-    def __init__(self,dbname="leave"):
+    def __init__(self,dbname="todo"):
         self.dbname=dbname
         self.db=pymysql.connect(host='localhost',
                              user='root',
@@ -27,6 +27,12 @@ class DBHelper:
         sqlquery="INSERT INTO appl(rollno, reason, otherr, days, cc, ccc, mentor, mentorco, status, comment, hod, dep, ccst, cccst, mentorst, mentorcost, hodst) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         self.cursor.execute(sqlquery,())
         self.db.commit()
+
+    def test_insert(self,rollno,reason):
+        sqlquerys="INSERT INTO test_table(rollno,reason) VALUES(%s,%s)"
+        self.cursor.execute(sqlquerys,(rollno,reason))
+        self.db.commit()
+
             
 
 
