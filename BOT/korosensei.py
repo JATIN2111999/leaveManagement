@@ -47,7 +47,7 @@ def get_last_update_id(updates):
 def checkdict(dict_value):
     for value in dict_value.values():
         print(value)
-        if value==None:
+        if value=="":
             return False
     return True
 
@@ -59,73 +59,100 @@ def split_ktext(text):
     return ktext
 
 def split_vtext(text):
-    vtext=text.split(":")[1].lower()
+    vtext=text.split(":")[1].lower().strip()
     return vtext 
 ###########################################
 
 def messageformatting(valuesdata):
     messagehai=""
     for key,val in valuesdata.items():
-        
         messagehai+=f"{key}:{val}\n"
     return messagehai
 
 #clear data in dict
 def cleardata():
     for key,_ in dataupdate.items():
-        dataupdate[key]==""
+        dataupdate[key]=""
 
 
 def return_file_link(linkID):
     url=f"https://api.telegram.org/bot{TOKEN}/getFile?file_id={linkID}"
-    content=get_url(url)
-    js=json.load(content)
-    print(js)
-    return None
+
+    content=get_json_from_url(url)
+    path=content['result']['file_path']
+    urljpg=f"https://api.telegram.org/file/bot{TOKEN}/{path}"
+    return urljpg
 
 
 def handle_updates(updates):
+    
+
     for update in updates['result']:
+    
+        
         try:
-            text=update['message']['text']
-            chat = update["message"]["chat"]["id"]
             
-            if text =="/start":
-                cleardata()              
-                send_message("HI i am korosensei enter details in below format one by one",chat)
-                send_message("rollno:example",chat)
-                send_message("reason:commite work",chat)
-            elif text =="/done":  
-                if checkdict(dataupdate):
-                    db.test_insert(**dataupdate)
-                    cleardata()
+            
+            chat = update["message"]["chat"]["id"]
+            try:
+
+                #image part
+                update['message']['photo'][1]["file_id"]
+                text=""
+                if "photo" in update['message'] and checkdict(dataupdate):
+                    print(update['message']['photo'][1]["file_id"])
+                    pathurl=return_file_link(update['message']['photo'][1]["file_id"])
+                    send_message(pathurl,chat)
                 else:
-                    cleardata()                
-                send_message("its done bro ",chat) 
+                    send_message("first enter details",chat)
+
+
                 
-            elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
-                dataupdate["rollno"]=split_vtext(text)
-                messageformat="entered data provided\n"
-                messageformat+=messageformatting(dataupdate)
-                send_message(messageformat,chat)
+            except:
+                #text part
+                text=update['message']['text']
+                if text =="/start":
+                    cleardata()              
+                    send_message("HI i am korosensei enter details in below format one by one",chat)
+                    send_message("rollno:<example>",chat)
+                    send_message("reason:<commite work>",chat)
 
-            elif split_ktext(text)=="reason" and split_vtext(text)!=None:
-                dataupdate["reason"]=split_vtext(text)
-                messageformat="entered data provided\n"
-                messageformat+=messageformatting(dataupdate)
-                messageformat+="\n/done click done :)"
-                send_message(messageformat,chat)
+                elif text =="/done":  
+                    if checkdict(dataupdate):
+                        db.test_insert(**dataupdate)
+                        cleardata()
+                        send_message("its done bro ",chat) 
+                    else:
+                        cleardata()       
+                        send_message("you missed to enter rollno or reason",chat)         
+                
+                elif text =="/login":
+                    send_message("ready for login enter userid and password like in the below format\nuser:<userID>\npassword:<pass>",chat)
 
-            # elif update['message']['photo']:
-            #     print("jatin")
-            #     return_file_link(update['message']['photo'][1]['file_id'])
+                    
+                elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
+                    dataupdate["rollno"]=split_vtext(text)
+                    messageformat="entered data provided\n"
+                    messageformat+=messageformatting(dataupdate)
+                    send_message(messageformat,chat)
 
-            else:
-                send_message("hey what's up click on => /start",chat)
+                elif split_ktext(text)=="reason" and split_vtext(text)!=None:
+                    dataupdate["reason"]=split_vtext(text)
+                    messageformat="entered data provided\n"
+                    messageformat+=messageformatting(dataupdate)
+                    messageformat+="\n/done click done :)"
+                    send_message(messageformat,chat)
+
+
+                else:
+                    send_message("I don't got U ma student",chat)
 
             
         except KeyError:
-            pass
+            print("ohhhhhhh f")
+
+
+
                 
 
 
