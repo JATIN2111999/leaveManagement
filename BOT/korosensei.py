@@ -6,10 +6,11 @@ import json
 
 
 
-
 URL="https://api.telegram.org/bot{}/".format(TOKEN)
 
 dataupdate={"rollno":"","reason":""}
+User_db=[]
+dataupdate={}
 
 db=DBHelper()
 
@@ -61,6 +62,8 @@ def split_ktext(text):
 def split_vtext(text):
     vtext=text.split(":")[1].lower().strip()
     return vtext 
+
+
 ###########################################
 
 def messageformatting(valuesdata):
@@ -117,20 +120,21 @@ def handle_updates(updates):
                     send_message("rollno:<example>",chat)
                     send_message("reason:<commite work>",chat)
 
-                elif text =="/done":  
-                    if checkdict(dataupdate):
-                        db.test_insert(**dataupdate)
-                        cleardata()
-                        send_message("its done bro ",chat) 
-                    else:
-                        cleardata()       
-                        send_message("you missed to enter rollno or reason",chat)         
+                # elif text =="/done":  
+                #     if checkdict(dataupdate):
+                #         db.test_insert(**dataupdate)
+                #         cleardata()
+                #         send_message("its done bro ",chat) 
+                #     else:
+                #         cleardata()       
+                #         send_message("you missed to enter rollno or reason",chat)         
                 
                 elif text =="/login":
                     send_message("ready for login enter userid and password like in the below format\nuser:<userID>\npassword:<pass>",chat)
 
                     
                 elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
+                    User_db.append({chat:{"rollno":split_vtext(text)}})
                     dataupdate["rollno"]=split_vtext(text)
                     messageformat="entered data provided\n"
                     messageformat+=messageformatting(dataupdate)
