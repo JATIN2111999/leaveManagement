@@ -22,8 +22,6 @@ $showtables= mysqli_query($conn, $sql);
 // $row1 = mysqli_fetch_array($result);
 // $total1 = $row1[0];
 
-
-//bootstrap dal
 ?>
 <!DOCTYPE html>
 <html>

@@ -20,6 +20,6 @@ if(!$_SESSION['userid'])
 <a href="home.php">Home</a>
 <br>
 <a href="pending.php">
-<label>Pending</label></a>
+<label>Pending()</label></a>
 </body>
 </html>
