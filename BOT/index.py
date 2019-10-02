@@ -66,10 +66,34 @@ for i in range(len(val)):
             print("soething not entered")
             continue
 
+#print value
 
+
+for i in range(len(val)):
+    if id1 in (val[i]):
+        print(val[i][id1],"jatin")
         
+
+
+data=[{813472815: {'rollno': '86855',"reason":"adjb"}}, {408266692: {'rollno': '86855',"reason":"adjb"}}, {906306697: {'rollno': '',"reason":""}}]
+# j=0
+chat=813472815
+# for i in range(len(data)):
+#     if chat in data[i]:
+#         print("user hai")
+#         j=1
+#         break
+#     else:
+#         j=0
+#         continue
+# if j==0:
+#     data.append({chat:{}})
+
+
+# print(data)
         
 
-
-
-
+for i in range(len(data)):
+    if chat in (data[i]):
+        for key,value in data[i][chat].items():
+            print(key,value)

@@ -5,11 +5,9 @@ import requests
 import json
 
 
-
 URL="https://api.telegram.org/bot{}/".format(TOKEN)
-
-dataupdate={"rollno":"","reason":""}
 User_db=[]
+dataupdate={"rollno":"","reason":""}
 dataupdate={}
 
 db=DBHelper()
@@ -56,7 +54,7 @@ def checkdict(dict_value):
 #get : rollno reson keys and values 
 
 def split_ktext(text):
-    ktext=text.split(":")[0].lower()
+    ktext=text.split(":")[0].lower().strip()
     return ktext
 
 def split_vtext(text):
@@ -66,11 +64,7 @@ def split_vtext(text):
 
 ###########################################
 
-def messageformatting(valuesdata):
-    messagehai=""
-    for key,val in valuesdata.items():
-        messagehai+=f"{key}:{val}\n"
-    return messagehai
+
 
 #clear data in dict
 def cleardata():
@@ -87,20 +81,53 @@ def return_file_link(linkID):
     return urljpg
 
 
-def handle_updates(updates):
-    
 
+def User_is_in_db(chatid):
+    for i in range(len(User_db)):
+        if chatid in (User_db[i]):
+            return True
+        else:
+            return False
+
+def User_is_in_db_put_value(chatid,valuestocheck,text):
+    for i in range(len(User_db)):
+        if chatid in (User_db[i]):
+            print("working good")
+            User_db[i][chatid][valuestocheck]=text
+        else:
+            continue
+
+def messageformatting(chat):
+    messagehai="entered data provided\n"
+    for i in range(len(User_db)):
+        if chat in (User_db[i]):            
+            for key,value in User_db[i][chat].items():
+                messagehai+=f"{key}:{value}\n"
+                print(messagehai)
+            return messagehai
+
+def User_update(chatid):
+    jhai=0
+    for i in range(len(User_db)):
+        if chatid in User_db[i]:
+            jhai = 1
+            break  
+        else:
+            jhai = 0
+            continue
+    if jhai==0:
+        User_db.append({chatid:{"rollno":"","reason":""}})
+
+
+def handle_updates(updates):
     for update in updates['result']:
-    
         
         try:
             
-            
             chat = update["message"]["chat"]["id"]
-            try:
-
-                #image part
-                update['message']['photo'][1]["file_id"]
+            if("photo" in update['message']):
+                print(update['message'])
+                print(update['message']['photo'][1]["file_id"])
                 text=""
                 if "photo" in update['message'] and checkdict(dataupdate):
                     print(update['message']['photo'][1]["file_id"])
@@ -108,14 +135,22 @@ def handle_updates(updates):
                     send_message(pathurl,chat)
                 else:
                     send_message("first enter details",chat)
-
-
-                
-            except:
+            else:
                 #text part
                 text=update['message']['text']
                 if text =="/start":
-                    cleardata()              
+                    jhai=0
+                    for i in range(len(User_db)):
+                        if chat in User_db[i]:
+                            jhai = 1
+                            break  
+                        else:
+                            jhai = 0
+                            continue
+                    if jhai==0:
+                        User_db.append({chat:{}})
+                        jhai=0
+                    print(User_db)
                     send_message("HI i am korosensei enter details in below format one by one",chat)
                     send_message("rollno:<example>",chat)
                     send_message("reason:<commite work>",chat)
@@ -134,26 +169,28 @@ def handle_updates(updates):
 
                     
                 elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
-                    User_db.append({chat:{"rollno":split_vtext(text)}})
-                    dataupdate["rollno"]=split_vtext(text)
-                    messageformat="entered data provided\n"
-                    messageformat+=messageformatting(dataupdate)
+                    
+                    # if User_is_in_db(chat):
+                    #     print("chal raha hai ")
+                    #     User_is_in_db_put_value(chat,"rollno",split_vtext(text))
+                    #     messageformat=messageformatting(chat)
+                    #     send_message(messageformat,chat)
+                    # else:
+                    #     send_message("not a user press /start",chat)
+                    User_is_in_db_put_value(chat,"rollno",split_vtext(text))
+                    messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
+                        
 
                 elif split_ktext(text)=="reason" and split_vtext(text)!=None:
-                    dataupdate["reason"]=split_vtext(text)
-                    messageformat="entered data provided\n"
-                    messageformat+=messageformatting(dataupdate)
-                    messageformat+="\n/done click done :)"
+
+                    User_is_in_db_put_value(chat,"reason",split_vtext(text))
+                    messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
 
-
-                else:
-                    send_message("I don't got U ma student",chat)
-
-            
-        except KeyError:
-            print("ohhhhhhh f")
+                print(User_db)
+        except:
+            print("ohh ffff")
 
 
 
@@ -165,6 +202,7 @@ def handle_updates(updates):
 
 def main():
     last_update_id=None
+    
     while True:
         updates=get_updates(last_update_id)
         if len(updates['result'])>0:
