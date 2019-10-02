@@ -97,3 +97,9 @@ for i in range(len(data)):
     if chat in (data[i]):
         for key,value in data[i][chat].items():
             print(key,value)
+
+for i in range(len(data)):
+    if chat in (data[i]):
+        print("True")
+    else:
+        print("False")

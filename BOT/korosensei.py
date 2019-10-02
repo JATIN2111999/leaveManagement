@@ -5,9 +5,9 @@ import requests
 import json
 
 
+
 URL="https://api.telegram.org/bot{}/".format(TOKEN)
 User_db=[]
-dataupdate={"rollno":"","reason":""}
 dataupdate={}
 
 db=DBHelper()
@@ -62,14 +62,6 @@ def split_vtext(text):
     return vtext 
 
 
-###########################################
-
-
-
-#clear data in dict
-def cleardata():
-    for key,_ in dataupdate.items():
-        dataupdate[key]=""
 
 
 def return_file_link(linkID):
@@ -86,8 +78,7 @@ def User_is_in_db(chatid):
     for i in range(len(User_db)):
         if chatid in (User_db[i]):
             return True
-        else:
-            return False
+    return False
 
 def User_is_in_db_put_value(chatid,valuestocheck,text):
     for i in range(len(User_db)):
@@ -102,6 +93,8 @@ def messageformatting(chat):
     for i in range(len(User_db)):
         if chat in (User_db[i]):            
             for key,value in User_db[i][chat].items():
+                if key=="image":
+                    value="uploaded"
                 messagehai+=f"{key}:{value}\n"
                 print(messagehai)
             return messagehai
@@ -125,16 +118,19 @@ def handle_updates(updates):
         try:
             
             chat = update["message"]["chat"]["id"]
+
             if("photo" in update['message']):
-                print(update['message'])
-                print(update['message']['photo'][1]["file_id"])
-                text=""
-                if "photo" in update['message'] and checkdict(dataupdate):
-                    print(update['message']['photo'][1]["file_id"])
+                if User_is_in_db(chat):
+                    text=""
+                        # print(update['message']['photo'][1]["file_id"])
                     pathurl=return_file_link(update['message']['photo'][1]["file_id"])
-                    send_message(pathurl,chat)
+                    User_is_in_db_put_value(chat,"image",pathurl)
+                    messageformat=messageformatting(chat)
+                    send_message(messageformat,chat)
                 else:
-                    send_message("first enter details",chat)
+                    send_message("first enter detail",chat)
+                
+                
             else:
                 #text part
                 text=update['message']['text']
@@ -156,7 +152,7 @@ def handle_updates(updates):
                     send_message("reason:<commite work>",chat)
 
                 # elif text =="/done":  
-                #     if checkdict(dataupdate):
+                #     if User_is_in_db(chat):
                 #         db.test_insert(**dataupdate)
                 #         cleardata()
                 #         send_message("its done bro ",chat) 
@@ -164,8 +160,8 @@ def handle_updates(updates):
                 #         cleardata()       
                 #         send_message("you missed to enter rollno or reason",chat)         
                 
-                elif text =="/login":
-                    send_message("ready for login enter userid and password like in the below format\nuser:<userID>\npassword:<pass>",chat)
+                # elif text =="/login":
+                #     send_message("ready for login enter userid and password like in the below format\nuser:<userID>\npassword:<pass>",chat)
 
                     
                 elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
