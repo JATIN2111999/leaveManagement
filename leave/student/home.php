@@ -21,7 +21,7 @@ if(!$_SESSION['userid'])
 
 <br><br><br><br><br><br><br><br><br><br>
 
-         <form  method="post" action="../actions/leave.php" >
+         <form  method="post" action="../actions/leave.php" enctype="multipart/form-data">
   <label ><b>Leave Reason</b></label>
  <select id="reason" name="reason">
  	<option value="medical">Medical</option>
@@ -39,6 +39,7 @@ if(!$_SESSION['userid'])
     	<option value="6">More Than 5 Days</option>
     </select>
     <br>
+    <input type="file" name="img" id="img">
     <br>
     <button type="submit" name="leave" value="leave" >Submit</button>
 </form>

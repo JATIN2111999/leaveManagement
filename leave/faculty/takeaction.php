@@ -71,7 +71,8 @@ Days :<?php echo "$row[days]"; ?>
 <br>
 Other :<?php echo "$row[otherr]"; ?>
 <br>
-
+Uploaded Img:<br><?php echo "<img src='../actions/img/".$row['img']."'>"; ?>
+<br>
 <?php 
 
                           echo "<a href='../actions/appr.php?sr=".$sr."&position=".$row2['position']."&dep=".$row['dep']."'>Approve </a>";
