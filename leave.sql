@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2019 at 10:24 AM
+-- Generation Time: Oct 03, 2019 at 03:43 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -46,26 +46,57 @@ CREATE TABLE `appl` (
   `cccst` int(11) NOT NULL,
   `mentorst` int(11) NOT NULL,
   `mentorcost` int(11) NOT NULL,
-  `hodst` int(11) NOT NULL
+  `hodst` int(11) NOT NULL,
+  `img` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `appl`
 --
 
-INSERT INTO `appl` (`sr`, `rollno`, `reason`, `otherr`, `days`, `cc`, `ccc`, `mentor`, `mentorco`, `status`, `comment`, `hod`, `dep`, `ccst`, `cccst`, `mentorst`, `mentorcost`, `hodst`) VALUES
-(1, 'r', 'medical', '', '4', 'cc1', '', 'mentor1', 'mc1', '', '', 'hod1', 'comp', 1, 0, 0, 0, 0),
-(2, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '1', '', '', 'comp', 0, 0, 0, 0, 0),
-(3, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '2', '', '', 'comp', 2, 0, 0, 0, 0),
-(4, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0),
-(5, 'b', 'committee', '', '1', 'cc2', '', 'm1', 'mc1', '', '', 'hod2', 'it', 0, 0, 0, 0, 0),
-(6, 'b', 'medical', '', '4', 'cc2', '', 'm1', 'mc1', '', '', '', 'it', 0, 0, 0, 0, 0),
-(7, 'b', 'emergency', '', '2', 'cc2', '', 'm1', '', '', '', '', 'it', 0, 0, 0, 0, 0),
-(8, 'c', 'emergency', '', '3', 'cc2', '', 'm2', 'mc1', '', '', '', 'comp', 0, 0, 0, 0, 0),
-(9, 'a', 'medical', '', '6', 'cc1', 'ccc1', 'mentor1', 'mc1', '', '', 'hod1', 'comp', 0, 0, 1, 0, 0),
-(10, 'r', 'emergency', '', '4', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0),
-(11, 'r', 'other', '', '6', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0),
-(12, 'r', 'committee', '', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0);
+INSERT INTO `appl` (`sr`, `rollno`, `reason`, `otherr`, `days`, `cc`, `ccc`, `mentor`, `mentorco`, `status`, `comment`, `hod`, `dep`, `ccst`, `cccst`, `mentorst`, `mentorcost`, `hodst`, `img`) VALUES
+(1, 'r', 'medical', '', '4', 'cc1', '', 'mentor1', 'mc1', '', '', 'hod1', 'comp', 1, 0, 0, 0, 0, ''),
+(2, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '1', '', '', 'comp', 2, 0, 0, 0, 0, ''),
+(3, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '2', '', '', 'comp', 2, 0, 0, 0, 0, ''),
+(4, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, ''),
+(5, 'b', 'committee', '', '1', 'cc2', '', 'm1', 'mc1', '', '', 'hod2', 'it', 0, 0, 0, 0, 0, ''),
+(6, 'b', 'medical', '', '4', 'cc2', '', 'm1', 'mc1', '', '', '', 'it', 0, 0, 0, 2, 0, ''),
+(7, 'b', 'emergency', '', '2', 'cc2', '', 'm1', '', '', '', '', 'it', 0, 0, 0, 0, 0, ''),
+(8, 'c', 'emergency', '', '3', 'cc2', '', 'm2', 'mc1', '', '', '', 'comp', 0, 0, 0, 0, 0, ''),
+(9, 'a', 'medical', '', '6', 'cc1', 'ccc1', 'mentor1', 'mc1', '', '', 'hod1', 'comp', 0, 0, 1, 0, 0, ''),
+(10, 'r', 'emergency', '', '4', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, ''),
+(11, 'r', 'other', '', '6', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 2, 0, 0, 0, 0, ''),
+(12, 'r', 'committee', '', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, ''),
+(13, 'r', 'emergency', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 1, 0, 0, 0, 0, ''),
+(14, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, ''),
+(15, 'r', 'medical', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, ''),
+(16, 'r', 'medical', '', '1', 'cc1', 'ccc1', 'mentor1', 'mc1', '', '', 'hod1', 'comp', 0, 0, 0, 0, 0, ''),
+(17, 'a', 'medical', 'sfsdfs', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, '71321579_531683404258131_7745465685697888256_n.jpg'),
+(18, 'a', 'medical', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, '71321579_531683404258131_7745465685697888256_n.jpg'),
+(19, 'a', 'medical', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, '71321579_531683404258131_7745465685697888256_n.jpg'),
+(20, 'r', 'medical', 'dwfwfwfefef', '1', 'cc1', 'ccc1', 'mentor1', 'mc1', '', '', 'hod1', 'comp', 0, 0, 0, 0, 0, 'newlogo.png'),
+(21, '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, ''),
+(22, '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, ''),
+(23, '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, ''),
+(24, '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, ''),
+(25, '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, ''),
+(26, '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, ''),
+(27, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'logo1w.png'),
+(28, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'logo1w.png'),
+(29, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'logo1w.png'),
+(30, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'logo1w.png'),
+(31, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'logo1w.png'),
+(32, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'logo1w.png'),
+(33, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(34, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(35, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(36, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(37, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(38, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(39, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(40, 'a', 'Medical', 'HII', '3', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'sausage_3.jpg'),
+(41, 'a', 'medical', 'usdyfguys', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'B.png'),
+(42, 'a', 'medical', '', '1', 'cc1', '', 'mentor1', '', '', '', '', 'comp', 0, 0, 0, 0, 0, 'B2.png');
 
 -- --------------------------------------------------------
 
@@ -117,18 +148,21 @@ CREATE TABLE `student` (
   `ccc` varchar(50) NOT NULL,
   `mentorco` varchar(50) NOT NULL,
   `hod` varchar(50) NOT NULL,
-  `dep` varchar(50) NOT NULL
+  `dep` varchar(50) NOT NULL,
+  `mob` int(50) NOT NULL,
+  `parmob` int(50) NOT NULL,
+  `tlogin` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`sr`, `name`, `userid`, `password`, `mentor`, `cc`, `ccc`, `mentorco`, `hod`, `dep`) VALUES
-(1, 'a', 'a', '123', 'mentor1', 'cc1', '', '', '', 'comp'),
-(2, 'b', 'b', '123', 'm1', 'cc2', '', '', '', 'it'),
-(3, 'c', 'c', '123', 'm2', 'cc2', '', '', '', 'comp'),
-(4, 'rers', 'r', '123', 'mentor1', 'cc1', '', '', '', 'comp');
+INSERT INTO `student` (`sr`, `name`, `userid`, `password`, `mentor`, `cc`, `ccc`, `mentorco`, `hod`, `dep`, `mob`, `parmob`, `tlogin`) VALUES
+(1, 'a', 'a', '123', 'mentor1', 'cc1', '', '', '', 'comp', 0, 0, 0),
+(2, 'b', 'b', '123', 'm1', 'cc2', '', '', '', 'it', 0, 0, 0),
+(3, 'c', 'c', '123', 'm2', 'cc2', '', '', '', 'comp', 0, 0, 0),
+(4, 'rers', 'r', '123', 'mentor1', 'cc1', 'ccc1', 'mc1', 'hod1', 'comp', 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -160,7 +194,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `appl`
 --
 ALTER TABLE `appl`
-  MODIFY `sr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `faculty`
