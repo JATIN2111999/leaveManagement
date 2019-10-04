@@ -6,6 +6,7 @@ import json
 
 
 
+
 URL="https://api.telegram.org/bot{}/".format(TOKEN)
 User_db=[]
 dataupdate={}
@@ -93,24 +94,45 @@ def messageformatting(chat):
     for i in range(len(User_db)):
         if chat in (User_db[i]):            
             for key,value in User_db[i][chat].items():
-                if key=="image":
+                if key=="image" and value!='':
                     value="uploaded"
                 messagehai+=f"{key}:{value}\n"
                 print(messagehai)
             return messagehai
 
-def User_update(chatid):
-    jhai=0
-    for i in range(len(User_db)):
-        if chatid in User_db[i]:
-            jhai = 1
-            break  
-        else:
-            jhai = 0
-            continue
-    if jhai==0:
-        User_db.append({chatid:{"rollno":"","reason":""}})
+# def User_update(chatid):
+#     jhai=0
+#     for i in range(len(User_db)):
+#         if chatid in User_db[i]:
+#             jhai = 1
+#             break  
+#         else:
+#             jhai = 0
+#             continue
+#     if jhai==0:
+#         User_db.append({chatid:{"rollno":"","reason":""}})
 
+
+
+def value_are_not_empty(chat):
+    for i in range(len(User_db)):
+        if chat in User_db[i]:
+            for value in User_db[i][chat].values():
+                if value =='':
+                    return False
+    return True
+
+
+def get_the_user_dict(chat):
+    for i in range(len(User_db)):
+        if chat in User_db[i]:
+            return User_db[i][chat]
+
+def delete_user(chat):
+    for i in range(len(User_db)):
+        if chat in User_db[i]:
+            del User_db[i]
+            break
 
 def handle_updates(updates):
     for update in updates['result']:
@@ -122,8 +144,7 @@ def handle_updates(updates):
             if("photo" in update['message']):
                 if User_is_in_db(chat):
                     text=""
-                        # print(update['message']['photo'][1]["file_id"])
-                    pathurl=return_file_link(update['message']['photo'][1]["file_id"])
+                    pathurl=return_file_link(update['message']['photo'][0]["file_id"])
                     User_is_in_db_put_value(chat,"image",pathurl)
                     messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
@@ -144,7 +165,7 @@ def handle_updates(updates):
                             jhai = 0
                             continue
                     if jhai==0:
-                        User_db.append({chat:{}})
+                        User_db.append({chat:{'userid':'','days':'','reason':'','otherr':'','image':''}})
                         jhai=0
                     print(User_db)
                     send_message("HI i am korosensei enter details in below format one by one",chat)
@@ -163,8 +184,21 @@ def handle_updates(updates):
                 # elif text =="/login":
                 #     send_message("ready for login enter userid and password like in the below format\nuser:<userID>\npassword:<pass>",chat)
 
+                elif text =="/done":
+                    if value_are_not_empty(chat):
+                        temp=get_the_user_dict(chat)
+                     
+                        del temp["status"]
+
+                        f=db.leave_to_db(**temp)
+                            #logout
+                        delete_user(chat)
+                        
+                        send_message("done bro Enjoy",chat)     
+                    else:
+                        send_message("you missed something",chat)
                     
-                elif split_ktext(text)=="rollno" and split_vtext(text)!=None:
+                elif split_ktext(text)=="userid" and split_vtext(text)!=None:
                     
                     # if User_is_in_db(chat):
                     #     print("chal raha hai ")
@@ -173,7 +207,7 @@ def handle_updates(updates):
                     #     send_message(messageformat,chat)
                     # else:
                     #     send_message("not a user press /start",chat)
-                    User_is_in_db_put_value(chat,"rollno",split_vtext(text))
+                    User_is_in_db_put_value(chat,"userid",split_vtext(text))
                     messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
                         
@@ -184,9 +218,25 @@ def handle_updates(updates):
                     messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
 
-                print(User_db)
+
+                elif split_ktext(text)=="otherr" and split_vtext(text)!=None:
+
+                    User_is_in_db_put_value(chat,"otherr",split_vtext(text))
+                    messageformat=messageformatting(chat)
+                    send_message(messageformat,chat)
+                
+                elif split_ktext(text)=="days" and split_vtext(text)!=None:
+
+                    User_is_in_db_put_value(chat,"days",split_vtext(text))
+                    messageformat=messageformatting(chat)
+                    send_message(messageformat,chat)
+                
+
+                
         except:
             print("ohh ffff")
+
+        print(User_db)
 
 
 
