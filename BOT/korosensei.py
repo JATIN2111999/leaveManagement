@@ -46,7 +46,6 @@ def get_last_update_id(updates):
 
 def checkdict(dict_value):
     for value in dict_value.values():
-        print(value)
         if value=="":
             return False
     return True
@@ -97,20 +96,19 @@ def messageformatting(chat):
                 if key=="image" and value!='':
                     value="uploaded"
                 messagehai+=f"{key}:{value}\n"
-                print(messagehai)
+            messagehai+="if you done with all details \nclick on => /done"
             return messagehai
 
-# def User_update(chatid):
-#     jhai=0
-#     for i in range(len(User_db)):
-#         if chatid in User_db[i]:
-#             jhai = 1
-#             break  
-#         else:
-#             jhai = 0
-#             continue
-#     if jhai==0:
-#         User_db.append({chatid:{"rollno":"","reason":""}})
+
+def messageformattinguserid(chat):
+    messagehai="entered data provided for login\n"
+    for i in range(len(User_db)):
+        if chat in (User_db[i]):            
+            for key,value in User_db[i][chat].items():
+                if key == 'password' or key=='userid':
+                    messagehai+=f"{key}:{value}\n"
+            return messagehai
+
 
 
 
@@ -133,6 +131,19 @@ def delete_user(chat):
         if chat in User_db[i]:
             del User_db[i]
             break
+
+def get_status(chat):
+    for i in range(len(User_db)):
+        if chat in User_db[i]:
+            if User_db[i][chat]['status']==1:
+                return True
+            else:
+                return False
+
+def putstatus(chat):
+    for i in range(len(User_db)):
+        if chat in User_db[i]:
+            User_db[i][chat]['status']=1
 
 def handle_updates(updates):
     for update in updates['result']:
@@ -165,67 +176,67 @@ def handle_updates(updates):
                             jhai = 0
                             continue
                     if jhai==0:
-                        User_db.append({chat:{'userid':'','days':'','reason':'','otherr':'','image':''}})
+                        User_db.append({chat:{'userid':'','days':'','reason':'','otherr':'','image':'','status':'','password':''}})
                         jhai=0
-                    print(User_db)
                     send_message("HI i am korosensei enter details in below format one by one",chat)
-                    send_message("rollno:<example>",chat)
-                    send_message("reason:<commite work>",chat)
+                    send_message("enter the below details one by one  \nuserid:<yourUserid> \npassword:<yourpassword>",chat)
 
-                # elif text =="/done":  
-                #     if User_is_in_db(chat):
-                #         db.test_insert(**dataupdate)
-                #         cleardata()
-                #         send_message("its done bro ",chat) 
-                #     else:
-                #         cleardata()       
-                #         send_message("you missed to enter rollno or reason",chat)         
-                
-                # elif text =="/login":
-                #     send_message("ready for login enter userid and password like in the below format\nuser:<userID>\npassword:<pass>",chat)
+                elif text=="/login":
+                    for i in range(len(User_db)):
+                        if chat in User_db[i]:
+                            userid_text=User_db[i][chat]['userid']
+                            pass_text=User_db[i][chat]['password']
+                            f=db.authenticate(userid_text,pass_text)
+                            if f=='1':
+                                putstatus(chat)
+                                send_message("you logged in status:1",chat)
+                                send_message(messageformatting(chat),chat)
+                            else:
+                                send_message('userid/email entered wrong',chat)
+                    
 
                 elif text =="/done":
                     if value_are_not_empty(chat):
                         temp=get_the_user_dict(chat)
                      
                         del temp["status"]
+                        del temp['password']
+
 
                         f=db.leave_to_db(**temp)
                             #logout
                         delete_user(chat)
                         
-                        send_message("done bro Enjoy",chat)     
+                        send_message("leave application submitted Enjoy",chat)     
                     else:
                         send_message("you missed something",chat)
                     
                 elif split_ktext(text)=="userid" and split_vtext(text)!=None:
-                    
-                    # if User_is_in_db(chat):
-                    #     print("chal raha hai ")
-                    #     User_is_in_db_put_value(chat,"rollno",split_vtext(text))
-                    #     messageformat=messageformatting(chat)
-                    #     send_message(messageformat,chat)
-                    # else:
-                    #     send_message("not a user press /start",chat)
                     User_is_in_db_put_value(chat,"userid",split_vtext(text))
-                    messageformat=messageformatting(chat)
+                    messageformat=messageformattinguserid(chat)
+                    send_message(messageformat,chat)
+            
+                elif split_ktext(text)=="password" and split_vtext(text)!=None:
+                    User_is_in_db_put_value(chat,"password",split_vtext(text))
+                    messageformat=messageformattinguserid(chat)
+                    messageformat+="\nclick on => /login"
                     send_message(messageformat,chat)
                         
 
-                elif split_ktext(text)=="reason" and split_vtext(text)!=None:
+                elif get_status(chat) and split_ktext(text)=="reason" and split_vtext(text)!=None:
 
                     User_is_in_db_put_value(chat,"reason",split_vtext(text))
                     messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
 
 
-                elif split_ktext(text)=="otherr" and split_vtext(text)!=None:
+                elif get_status(chat) and split_ktext(text)=="otherr" and split_vtext(text)!=None:
 
                     User_is_in_db_put_value(chat,"otherr",split_vtext(text))
                     messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
                 
-                elif split_ktext(text)=="days" and split_vtext(text)!=None:
+                elif get_status(chat) and split_ktext(text)=="days" and split_vtext(text)!=None:
 
                     User_is_in_db_put_value(chat,"days",split_vtext(text))
                     messageformat=messageformatting(chat)
@@ -259,3 +270,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
