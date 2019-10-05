@@ -61,9 +61,6 @@ def split_vtext(text):
     vtext=text.split(":")[1].lower().strip()
     return vtext 
 
-
-
-
 def return_file_link(linkID):
     url=f"https://api.telegram.org/bot{TOKEN}/getFile?file_id={linkID}"
 
@@ -110,8 +107,6 @@ def messageformattinguserid(chat):
             return messagehai
 
 
-
-
 def value_are_not_empty(chat):
     for i in range(len(User_db)):
         if chat in User_db[i]:
@@ -140,6 +135,14 @@ def get_status(chat):
             else:
                 return False
 
+def get_status_empty(chat):
+    for i in range(len(User_db)):
+        if chat in User_db[i]:
+            if User_db[i][chat]['status']=='':
+                return True
+            else:
+                return False
+
 def putstatus(chat):
     for i in range(len(User_db)):
         if chat in User_db[i]:
@@ -151,8 +154,8 @@ def handle_updates(updates):
         try:
             
             chat = update["message"]["chat"]["id"]
-
-            if("photo" in update['message']):
+            #image part
+            if( get_status(chat) and "photo" in update['message']):
                 if User_is_in_db(chat):
                     text=""
                     pathurl=return_file_link(update['message']['photo'][0]["file_id"])
@@ -178,10 +181,11 @@ def handle_updates(updates):
                     if jhai==0:
                         User_db.append({chat:{'userid':'','days':'','reason':'','otherr':'','image':'','status':'','password':''}})
                         jhai=0
-                    send_message("HI i am korosensei enter details in below format one by one",chat)
+                    send_message("HEY "+update['message']['from']['first_name'].upper(),chat)
+                    send_message("HI i am Korosensei enter details in below format one by one",chat)
                     send_message("enter the below details one by one  \nuserid:<yourUserid> \npassword:<yourpassword>",chat)
 
-                elif text=="/login":
+                elif get_status_empty(chat) and text=="/login":
                     for i in range(len(User_db)):
                         if chat in User_db[i]:
                             userid_text=User_db[i][chat]['userid']
@@ -211,12 +215,12 @@ def handle_updates(updates):
                     else:
                         send_message("you missed something",chat)
                     
-                elif split_ktext(text)=="userid" and split_vtext(text)!=None:
+                elif get_status_empty(chat)  and split_ktext(text)=="userid" and split_vtext(text)!=None:
                     User_is_in_db_put_value(chat,"userid",split_vtext(text))
                     messageformat=messageformattinguserid(chat)
                     send_message(messageformat,chat)
             
-                elif split_ktext(text)=="password" and split_vtext(text)!=None:
+                elif get_status_empty(chat) and  split_ktext(text)=="password" and split_vtext(text)!=None:
                     User_is_in_db_put_value(chat,"password",split_vtext(text))
                     messageformat=messageformattinguserid(chat)
                     messageformat+="\nclick on => /login"
@@ -242,20 +246,16 @@ def handle_updates(updates):
                     messageformat=messageformatting(chat)
                     send_message(messageformat,chat)
                 
-
+                else:
+                    if User_is_in_db(chat):
+                        send_message("just type text in the below format\nuserid:17ce1008",chat)
+                    else:
+                        send_message("hey there, i don't think u understand click on /start",chat)
                 
         except:
-            print("ohh ffff")
+            pass
 
         print(User_db)
-
-
-
-                
-
-
-
-
 
 def main():
     last_update_id=None
