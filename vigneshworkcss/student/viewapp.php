@@ -30,11 +30,12 @@ function status($n){
 <!DOCTYPE html>
 <html>
 <!-- <a href="logout.php">Logout</a> -->
+
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <title>Welcome Home</title>
   <style>
     .img {
@@ -42,24 +43,25 @@ function status($n){
       height: 50%;
     }
 
-    #tab1{
+    #tab1 {
       border: 2px solid black;
     }
 
-    #tab1 td{
+    #tab1 td {
       width: 150px;
       text-align: center;
       border: 2px solid black;
       padding: 10px;
 
     }
+
     /* .par{
       position:relative;
     } */
-    .logout{
-     position:absolute; 
-     top:2%;
-     right:3%; 
+    .logout {
+      position: absolute;
+      top: 2%;
+      right: 3%;
     }
 
     /* h2 {
@@ -83,15 +85,19 @@ function status($n){
     } */
   </style>
 </head>
+
 <body>
-<div class="img">
+  <div class="img">
     <img src="logo1.png" class="img-fluid"><br><br><br>
   </div>
-<div class="par">
-<div class="logout" class="col-md-4 col-lg-2">
-    <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">LOGOUT</button>
-</div>
-</div>
+  <div class="par">
+    <div class="logout" class="col-md-4 col-lg-2">
+      <button class="btn" data-toggle="button" aria-pressed="false" autocomplete="off"><a href="logout.php" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a></button>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="table" id="tab1">
       <!-- <div class="th1"> -->
@@ -105,25 +111,25 @@ function status($n){
       <!-- </div> -->
     </table>
   </div>
-<br>
-<table class="table table-striped table-bordered table-hover table-responsive-md" id="tab2">
-<thead class="thead table table-primary">
-<tr>
-    <th scope="col" style="text-align:center;"> Sr. No.</th>
-    <th scope="col" style="text-align:center;"> Reason</th>
-    <th scope="col" style="text-align:center;"> Other Reason</th>
-    <th scope="col" style="text-align:center;"> Days</th>
-    <th scope="col" style="text-align:center;"> CC</th>
+  <br>
+  <table class="table table-striped table-bordered table-hover table-responsive-md" id="tab2">
+    <thead class="thead table table-primary">
+      <tr>
+        <th scope="col" style="text-align:center;"> Sr. No.</th>
+        <th scope="col" style="text-align:center;"> Reason</th>
+        <th scope="col" style="text-align:center;"> Other Reason</th>
+        <th scope="col" style="text-align:center;"> Days</th>
+        <th scope="col" style="text-align:center;"> CC</th>
 
-    <th scope="col" style="text-align:center;"> CCC</th>
+        <th scope="col" style="text-align:center;"> CCC</th>
 
-    <th scope="col" style="text-align:center;"> Mentor</th>
-    <th scope="col" style="text-align:center;"> Mentor Coordinator</th>
-    <th scope="col" style="text-align:center;"> HOD</th>
-    </tr>
-</thead>
-<tbody>
-<?php
+        <th scope="col" style="text-align:center;"> Mentor</th>
+        <th scope="col" style="text-align:center;"> Mentor Coordinator</th>
+        <th scope="col" style="text-align:center;"> HOD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
 
                         while($table = mysqli_fetch_array($showtables))
                         { 
@@ -185,7 +191,8 @@ function status($n){
 
                       }
                         ?>
-</tbody>
-</table>
+    </tbody>
+  </table>
 </body>
+
 </html>

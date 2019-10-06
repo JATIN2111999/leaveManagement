@@ -78,12 +78,26 @@ $showtables5= mysqli_query($conn, $sql5);
       margin: auto;
       background-color: #dee2e6;
     }
+
+    .logout {
+      position: absolute;
+      top: 2%;
+      right: 3%;
+    }
   </style>
 </head>
 
 <body>
   <div class="img">
     <img src="logo1.png" class="img-fluid"><br><br><br>
+  </div>
+
+  <div class="par">
+    <div class="logout" class="col-md-4 col-lg-2">
+      <button class="btn" data-toggle="button" aria-pressed="false" autocomplete="off"><a href="logout.php" class="btn btn-info btn-lg">
+           Log out
+        </a></button>
+    </div>
   </div>
   <div class="table-responsive">
     <table class="table">

@@ -92,6 +92,8 @@ def messageformatting(chat):
             for key,value in User_db[i][chat].items():
                 if key=="image" and value!='':
                     value="uploaded"
+                if key=="password" :
+                    continue
                 messagehai+=f"{key}:{value}\n"
             messagehai+="if you done with all details \nclick on => /done"
             return messagehai
@@ -198,6 +200,9 @@ def handle_updates(updates):
                             else:
                                 send_message('userid/email entered wrong',chat)
                     
+                elif text=="/discard":
+                    delete_user(chat)
+                    send_message("your leave application is discarded",chat)
 
                 elif text =="/done":
                     if value_are_not_empty(chat):
@@ -225,6 +230,9 @@ def handle_updates(updates):
                     messageformat=messageformattinguserid(chat)
                     messageformat+="\nclick on => /login"
                     send_message(messageformat,chat)
+                
+                elif get_status(chat) and split_ktext(text)=="userid" or split_ktext(text)=="password" or text=="/login":
+                    send_message("you logged in my student start filling up all details",chat)
                         
 
                 elif get_status(chat) and split_ktext(text)=="reason" and split_vtext(text)!=None:
