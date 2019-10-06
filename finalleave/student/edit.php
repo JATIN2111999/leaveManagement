@@ -94,9 +94,9 @@ $showtables5= mysqli_query($conn, $sql5);
 
   <div class="par">
     <div class="logout" class="col-md-4 col-lg-2">
-      <button class="btn" data-toggle="button" aria-pressed="false" autocomplete="off"><a href="logout.php" class="btn btn-info btn-lg">
+<a href="logout.php" class="btn btn-info btn-lg">
            Log out
-        </a></button>
+        </a>
     </div>
   </div>
   <div class="table-responsive">

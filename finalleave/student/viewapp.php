@@ -64,25 +64,7 @@ function status($n){
       right: 3%;
     }
 
-    /* h2 {
-      text-align: center;
-    }
-
-    form {
-      text-align: center;
-      width: 75%;
-      text-align: center;
-      margin: auto;
-      display: table; 
-    }
-
-    .border {
-      border-style: hidden;
-      height: 110%;
-      width: 70%;
-      margin: auto;
-      background-color: #dee2e6;
-    } */
+   
   </style>
 </head>
 
@@ -92,9 +74,9 @@ function status($n){
   </div>
   <div class="par">
     <div class="logout" class="col-md-4 col-lg-2">
-      <button class="btn" data-toggle="button" aria-pressed="false" autocomplete="off"><a href="logout.php" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </a></button>
+<a href="logout.php" class="btn btn-info btn-lg">
+          Log out
+        </a>
     </div>
   </div>
 

@@ -18,7 +18,7 @@
   </div>
   <div class="row"> 
     <div class="container">
-      <div class="border">
+      <div class="border p-5">
       <!-- <div class="jumbotron"> -->
       <br><br><h2><b>LOGIN PAGE</b></h2><br><br>
       <form class="form-horizontal col-md-offset-3 col-md-9" method="POST" action="../actions/auth.php">
@@ -34,7 +34,7 @@
               <input type="password" name="password" class="form-control" placeholder="Enter Password" required><br><br>
               </div>
             </div>
-            <div class="row" style="display:inline">
+            <div class="row" style="display:inline ">
                 <button type="submit" name="login" style="width:33%;" class="btn btn-primary">LOGIN</button>
                 <button type="submit" name="Sign Up" style="width:33%;" class="btn btn-success">SIGN UP</button>
                 <button type="submit" name="Reset" style="width:33%;" class="btn btn-danger">RESET</button>

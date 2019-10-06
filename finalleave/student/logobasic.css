@@ -1,0 +1,28 @@
+.body{
+    overflow-x: hidden;
+}
+.img{
+    text-align: center;
+    height:50%;
+}
+h2{
+    text-align: center;
+}
+/* .centerform{
+    padding:20vh;
+    
+} */
+form{
+   /* text-align: center; */
+    width:75%;
+    text-align: center;
+    margin: auto;
+    /* display: table; */
+}
+.border{
+    border-style: hidden;
+    height:120%;
+    width:70%;
+    margin: auto;
+    background-color: #dee2e6;
+}
