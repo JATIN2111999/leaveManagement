@@ -90,11 +90,11 @@ if(!$_SESSION['userid'])
       <div class="border">
       <!-- <div class="jumbotron"> -->
       <br><br><h2><b>LEAVE DETAILS</b></h2><br><br>
-      <form class="form-horizontal col-md-offset-3 col-md-9" method="post" action="../actions/leave.php">
+      <form class="form-horizontal col-md-offset-3 col-md-9" method="post" action="../actions/leave.php" enctype="multipart/form-data">
           <div class="form-group row">
           <label class="col-sm-4 col-form-label"><b>LEAVE REASON:</b></label>
             <div class="col-sm-8">
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" id="reason" name="reason">
                      <option selected>Choose...</option>
                      <option value="1">Medical</option>
                      <option value="2">Committee</option>
@@ -107,7 +107,7 @@ if(!$_SESSION['userid'])
             <div class="form-group row">
           <label class="col-sm-4 col-form-label"><b>NUMBER OF DAYS:</b></label>
             <div class="col-sm-8">
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="days" id="days">
                      <option selected>Choose...</option>
                      <option value="1">1 day</option>
                      <option value="2">3 days</option>
@@ -119,7 +119,7 @@ if(!$_SESSION['userid'])
             <br>
             <div class="form-group row">
               <div class="col-sm-12">
-              <input type="text" name="others" class="form-control" placeholder="Other Reason (If Any)"><br><br>
+              <input type="text" name="otherr" class="form-control" placeholder="Other Reason (If Any)"><br><br>
               </div>
             </div>
 

@@ -6,9 +6,9 @@ $imgsucc="0";
 
 if(isset($_POST['leave']))
 {
-	if (isset($_POST['bot'])) {
+    if (isset($_POST['bot'])) {
 
-		function getimg($url) {         
+        function getimg($url) {         
     $headers[] = 'Accept: image/gif, image/png, image/x-bitmap, image/jpeg, image/pjpeg';              
     $headers[] = 'Connection: Keep-Alive';         
     $headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';         
@@ -33,16 +33,16 @@ file_put_contents('img/'.$imagename,$image);
 $imgsucc="1";
 $userid=$_POST['userid'];
 
-	}
-	else{
+    }
+    else{
 $userid=$_SESSION['userid'];
 
 $target= "img/".basename($_FILES['img']['name']);
 $imagename=$_FILES['img']['name'];
 move_uploaded_file($_FILES['img']['tmp_name'], $target);
 $imgsucc="1";
-}	
-	$reason=$_POST['reason'];
+}   
+    $reason=$_POST['reason'];
 $otherr=$_POST['otherr'];
 $days=$_POST['days'];
 
@@ -61,12 +61,12 @@ $sql = "INSERT INTO appl(rollno, reason, otherr, days, cc, mentor, ccc, mentorco
 
 if(mysqli_query($conn,$sql) && $imgsucc=="1")
 {
-	echo "1";
+    echo "1";
 echo "<script>alert('Success')</script><script>window.open('../student/home.php','_self')</script>";
 }
 else
 {
-	echo mysqli_error($conn);
+    echo mysqli_error($conn);
 }
 }
 ?>
