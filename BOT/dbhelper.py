@@ -3,8 +3,8 @@ import requests, urllib.request
 
 class DBHelper:
     def __init__(self):
-        self.urlleave="http://localhost/leaveManagement/leave/actions/leave.php"
-        self.urlauth="http://localhost/leaveManagement/leave/actions/auth.php"
+        self.urlleave="http://localhost/leaveManagement/finalleave/actions/leave.php"
+        self.urlauth="http://localhost/leaveManagement/finalleave/actions/auth.php"
 
     def authenticate(self,userid,password,login=''):
         dataauth = {'login':login,'userid':userid,'password':password}

@@ -122,6 +122,9 @@ if(!$_SESSION['userid'])
               <input type="text" name="others" class="form-control" placeholder="Other Reason (If Any)"><br><br>
               </div>
             </div>
+
+            <input type="file" name="img" id="img">
+
             <div class="row" style="display:inline">
                 <button type="submit" name="leave" style="width:33%;" class="btn btn-primary">SUBMIT</button>
             </div>

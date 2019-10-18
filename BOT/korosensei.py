@@ -7,11 +7,19 @@ import json
 
 
 
+
 URL="https://api.telegram.org/bot{}/".format(TOKEN)
 User_db=[]
 dataupdate={}
 
 db=DBHelper()
+
+
+#build keyboard
+def build_keyboard_days():
+    keyboard=[['Days:1' , 'Days:3'],['Days:3-5','Days:5'],['Days:More than 5'] ]
+    reply_markup={'keyboard':keyboard, "one_time_keyboard": True}
+    return json.dumps(reply_markup)
 
 def send_message(text,chat_id,reply_markup=None):
     text=urllib.parse.quote_plus(text)
@@ -196,7 +204,7 @@ def handle_updates(updates):
                             if f=='1':
                                 putstatus(chat)
                                 send_message("you logged in status:1",chat)
-                                send_message(messageformatting(chat),chat)
+                                send_message(messageformatting(chat),chat,build_keyboard_days())
                             else:
                                 send_message('userid/email entered wrong',chat)
                     

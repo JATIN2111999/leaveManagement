@@ -68,10 +68,8 @@ $row2 = $result2->fetch_array();
     .col {
       font-size: 30px;
       text-align: left;
-      font-family: 'Courier New', Courier, monospace ;
+      font-family: 'Courier New', Courier, monospace;
     }
-
-
   </style>
 
 </head>
@@ -101,7 +99,7 @@ $row2 = $result2->fetch_array();
     </table>
   </div>
 
-<!-- 
+  <!-- 
   <br><br><br><br><br>
 
   <h2>
@@ -165,12 +163,15 @@ $row2 = $result2->fetch_array();
         LEAVE APPLICATION
         <br>
         Reason :<?php echo "$row[reason]"; ?>
-  <br>
-  Days :<?php echo "$row[days]"; ?>
-  <br>
-  Other :<?php echo "$row[otherr]"; ?>
-  <br>
-        
+        <br>
+        Days :<?php echo "$row[days]"; ?>
+        <br>
+        Other :<?php echo "$row[otherr]"; ?>
+        <br>
+        <br>
+        Uploaded Img:<br><?php echo "<img src='../actions/img/".$row['img']."'>"; ?>
+        <br>
+
         <?php
       echo "<a href='../actions/rej.php?sr=".$sr."&position=".$row2['position']."&dep=".$row['dep']."'>Reject </a>";
 
