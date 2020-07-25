@@ -11,10 +11,10 @@ The main motive of this project is to make the procedure of leave application ea
 ### below are some screenshot of the project
 
 <div width="100%">
-    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/2.jpg"/>
-    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/1.jpg"/>
-    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/4.jpg"/>
-    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/3.jpg"/>
+    <img width="40%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/2.jpg"/>
+    <img width="40%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/1.jpg"/>
+    <img width="40%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/4.jpg"/>
+    <img width="40%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/3.jpg"/>
 </div>
 
 # Technology Stack
