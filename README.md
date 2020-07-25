@@ -1,5 +1,5 @@
 # leaveManagement BOT
-<p align="center"><img width="10%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/logo.jpg" /></p>
+<p align="center"><img width="120px" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/logo.jpg" /></p>
 
 ### Hi! i am korosensei a virtual BOT handle your leave application by securely transfering data to your teacher,mentor,principal in a single chat.  
 
@@ -11,10 +11,10 @@ The main motive of this project is to make the procedure of leave application ea
 ### below are some screenshot of the project
 
 <div width="100%">
-    <img width="24%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/2.jpg"/>
-    <img width="24%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/1.jpg"/>
-    <img width="24%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/4.jpg"/>
-    <img width="24%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/3.jpg"/>
+    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/2.jpg"/>
+    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/1.jpg"/>
+    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/4.jpg"/>
+    <img width="50%" src="https://github.com/JATIN2111999/leaveManagement/blob/master/image/3.jpg"/>
 </div>
 
 # Technology Stack
